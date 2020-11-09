@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from logic import format_number
 
@@ -17,6 +17,15 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 @app.route('/format/<value>', methods=['GET'])
 def format_call(value):
     return jsonify(format_number(value))
+
+@app.route('/')
+def form():
+    return render_template("/form.html")
+
+@app.route('/', methods=['POST'])
+def form_post():
+    text = request.form['text']
+    return jsonify(format_number(text))
 
 if __name__ == '__main__':
     app.run()

@@ -13,19 +13,24 @@ app.config.from_object(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 
-# sanity check route
-@app.route('/format/<value>', methods=['GET'])
-def format_call(value):
-    return jsonify(format_number(value))
+def create_app():
+    # sanity check route
+    @app.route('/format/<value>', methods=['GET'])
+    def format_call(value):
+        return jsonify(format_number(value))
 
-@app.route('/')
-def form():
-    return render_template("/form.html")
+    @app.route('/')
+    def form():
+        return render_template("/form.html")
 
-@app.route('/', methods=['POST'])
-def form_post():
-    text = request.form['text']
-    return jsonify(format_number(text))
+    @app.route('/', methods=['POST'])
+    def form_post():
+        text = request.form['text']
+        return jsonify(format_number(text))
+
+    return app
 
 if __name__ == '__main__':
-    app.run()
+    from app import create_app
+    myapp = create_app()
+    myapp.run()

@@ -1,2 +1,2 @@
 def format_number(value):
-    return '{}'.format(value) 
+    return '{}.00'.format(value) 

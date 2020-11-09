@@ -17,11 +17,15 @@ def test_not_a_number():
 
 def test_filling_decimals():
     assert "1.10" == format_number(1.1)
-    assert "12313.90" == format_number(12313.9)
-    assert "12313.00" == format_number(12313.0)
+    assert "313.90" == format_number(313.9)
+    assert "313.00" == format_number(313.0)
 
 def test_rounding_decimals():
     assert "1.10" == format_number(1.099)
-    assert "12313.03" == format_number(12313.034)
-    assert "12313.01" == format_number(12313.009)
+    assert "313.03" == format_number(313.034)
+    assert "313.01" == format_number(313.009)
 
+def test_space_each_3_digits():
+    assert "123 456.00" == format_number(123456)
+    assert "12 345.00" == format_number(12345)
+    assert "1 234.00" == format_number(1234)

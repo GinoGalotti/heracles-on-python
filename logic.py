@@ -7,4 +7,4 @@ def format_number(value):
         return "Sorry, I need a numerical value"
 
     # Now we deal with the decimal parts
-    return '%.2f' % value 
+    return format(value, ",.2f").replace(',', ' ')
